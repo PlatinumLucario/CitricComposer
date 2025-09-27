@@ -1,4 +1,4 @@
-﻿using CitraFileLoader;
+using CitraFileLoader;
 using Syroot.BinaryData;
 using System;
 using System.Collections.Generic;
@@ -3087,7 +3087,7 @@ namespace Citric_Composer {
             string h = Microsoft.VisualBasic.Interaction.InputBox("New Name", "Enter Name:", tree.SelectedNode.Text.Split(']')[1].Substring(1));
             if (h != "") {
                 string node = tree.SelectedNode.Parent.Name;
-                if (node.Equals("stream")) {
+                if (node.Equals("streams")) {
                     File.Streams[tree.SelectedNode.Index].Name = h;
                 } else if (node.Equals("sequences")) {
                     File.Sequences[tree.SelectedNode.Index].Name = h;
@@ -3358,9 +3358,18 @@ namespace Citric_Composer {
                 if (f.FileId == -2) {
                     f = null;
                 }
+                string fileName = (f.ExternalFileName != null) ? Path.GetFileNameWithoutExtension(f.ExternalFileName) : f.FileName;
+                foreach (StreamEntry testEntry in File.Streams)
+                {
+                    if (testEntry.Name.CompareTo(fileName) == 0)
+                    {
+                        fileName = "STM_" + index;
+                        break;
+                    }
+                }
 
                 //New entry.
-                StreamEntry e = new StreamEntry() { Name = "STM_" + index, File = f, Player = File.Players[0], Sound3dInfo = new Sound3dInfo() };
+                StreamEntry e = new StreamEntry() { Name = fileName, File = f, Player = File.Players[0], Sound3dInfo = new Sound3dInfo() };
                 File.Streams.Insert(index, e);
 
                 //Manage sound sets.
