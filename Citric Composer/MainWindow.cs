@@ -2937,7 +2937,7 @@ namespace Citric_Composer {
 
             string node = tree.SelectedNode.Parent.Name;
             bool ret = false;
-            if (node.Equals("stream")) {
+            if (node.Equals("streams")) {
                 ret = Swap(File.Streams, tree.SelectedNode.Index, tree.SelectedNode.Index - 1);
             } else if (node.Equals("sequences")) {
                 ret = Swap(File.Sequences, tree.SelectedNode.Index, tree.SelectedNode.Index - 1);
@@ -2975,7 +2975,7 @@ namespace Citric_Composer {
 
             string node = tree.SelectedNode.Parent.Name;
             bool ret = false;
-            if (node.Equals("stream")) {
+            if (node.Equals("streams")) {
                 ret = Swap(File.Streams, tree.SelectedNode.Index, tree.SelectedNode.Index + 1);
             } else if (node.Equals("sequences")) {
                 ret = Swap(File.Sequences, tree.SelectedNode.Index, tree.SelectedNode.Index + 1);
